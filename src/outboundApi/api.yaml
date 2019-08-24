@@ -1,8 +1,8 @@
 openapi: 3.0.1
 info:
   title: Mojaloop SDK Outbound Scheme Adapter API
-  description: API specification for the Mojaloop SDK Outbound Scheme Adapter API – to be implemented by the Digital Financial Service Provider's (DFSP) backend.
-  
+  description: API specification for the Mojaloop SDK Outbound Scheme Adapter API
+    This is exposed to the DFSP backend, and mediates requests from the DFSP -> Switch via the scheme adapter
     
     **Note on terminology:** The term "Switch" is equal to the term "Hub", and the term "FSP" is equal to the term "DFSP".
   license:

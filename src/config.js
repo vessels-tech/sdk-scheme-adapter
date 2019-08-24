@@ -34,6 +34,19 @@ async function readFilesDelimitedList(delimiter, list) {
 }
 
 
+function parseBoolean(value) {
+    if (!value) {
+        return false;
+    }
+
+    if (value.toLowerCase() === 'false') {
+        return false;
+    }
+
+    return true;
+}
+
+
 
 // TODO: implement toString, toJSON toAnythingElse methods on config so that secrets can't be
 // printed
@@ -42,6 +55,7 @@ let config = {
     outboundPort: 4001,
     peerEndpoint: '172.17.0.2:3001',
     backendEndpoint: '172.17.0.2:3001',
+    // dfspId: 'lewbank1',
     dfspId: 'mojaloop-sdk',
     ilpSecret: 'mojaloop-sdk',
     checkIlp: true,
@@ -60,8 +74,8 @@ let config = {
             key: null
         }
     },
-    validateInboundJws: true,
-    jwsSign: true,
+    validateInboundJws: false,
+    jwsSign: false,
     jwsSigningKey: null,
     jwsVerificationKeysDirectory: null,
     cacheConfig: {
@@ -75,16 +89,16 @@ let config = {
 const setConfig = async cfg => {
     config.inboundPort = cfg.INBOUND_LISTEN_PORT;
     config.outboundPort = cfg.OUTBOUND_LISTEN_PORT;
-    config.tls.mutualTLS.enabled = cfg.MUTUAL_TLS_ENABLED.toLowerCase() === 'false' ? false : true;
+    config.tls.mutualTLS.enabled = parseBoolean(cfg.MUTUAL_TLS_ENABLED)
 
     config.peerEndpoint = cfg.PEER_ENDPOINT;
     config.backendEndpoint = cfg.BACKEND_ENDPOINT;
 
     config.dfspId = cfg.DFSP_ID;
     config.ilpSecret = cfg.ILP_SECRET;
-    config.checkIlp = cfg.CHECK_ILP.toLowerCase() === 'false' ? false : true;
+    config.checkIlp = parseBoolean(cfg.CHECK_ILP)
     config.expirySeconds = Number(cfg.EXPIRY_SECONDS);
-    config.autoAcceptQuotes = cfg.AUTO_ACCEPT_QUOTES.toLowerCase() === 'true' ? true : false;
+    config.autoAcceptQuotes = parseBoolean(cfg.AUTO_ACCEPT_QUOTES)
 
     // Getting secrets from files instead of environment variables reduces the likelihood of
     // accidental leakage.
@@ -104,8 +118,8 @@ const setConfig = async cfg => {
         ]);
     }
 
-    config.validateInboundJws = cfg.VALIDATE_INBOUND_JWS.toLowerCase() === 'false' ? false : true;
-    config.jwsSign = cfg.JWS_SIGN.toLowerCase() === 'false' ? false : true;
+    config.validateInboundJws = parseBoolean(cfg.VALIDATE_INBOUND_JWS)
+    config.jwsSign = parseBoolean(cfg.JWS_SIGN)
     config.jwsSigningKey = await readFile(cfg.JWS_SIGNING_KEY_PATH);
     config.jwsVerificationKeysDirectory = cfg.JWS_VERIFICATION_KEYS_DIRECTORY;
 
@@ -120,7 +134,7 @@ const setConfig = async cfg => {
     config.cacheConfig.host = cfg.CACHE_HOST;
     config.cacheConfig.port = cfg.CACHE_PORT;
 
-    config.enableTestFeatures = cfg.ENABLE_TEST_FEATURES.toLowerCase() === 'true' ? true : false;
+    config.enableTestFeatures = parseBoolean(cfg.ENABLE_TEST_FEATURES)
 
     config.wso2BearerToken = cfg.WS02_BEARER_TOKEN;
 };

@@ -63,7 +63,7 @@ const getPartiesByTypeAndId = async (ctx) => {
                     headers: ctx.request.headers
                 };
                 const res = await ctx.state.cache.set(`request_${ctx.state.path.params.ID}`, req);
-                ctx.state.logger.log(`Cacheing request : ${util.inspect(res)}`);
+                ctx.state.logger.log(`Caching request : ${util.inspect(res)}`);
             }
 
             // use the transfers model to execute asynchronous stages with the switch
@@ -198,6 +198,9 @@ const postTransfers = async (ctx) => {
  * Handles a PUT /participants/{idType}/{idValue} request
  */
 const putParticipantsByTypeAndId = async (ctx) => {
+    console.log("WTF, why is this not implemented!")
+    //Why does the sdk not make participants requests?
+
     // SDK does not make participants requests so we should not expect any calls to this method
     ctx.response.status = 501;
     ctx.response.body = '';

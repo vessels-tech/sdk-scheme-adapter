@@ -100,6 +100,7 @@ class InboundTransfersModel {
             };
 
             // make a callback to the source fsp with the party info
+            console.log("calling with putParties. mlParty is", mlParty)
             return this.mojaloopRequests.putParties(idType, idValue, mlParty, sourceFspId);
         }
         catch(err) {
