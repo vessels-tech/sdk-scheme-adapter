@@ -82,7 +82,8 @@ let config = {
         host: 'localhost',
         port: 6379
     },
-    enableTestFeatures: false
+    enableTestFeatures: false,
+    addHostHeader: true
 };
 
 
@@ -137,6 +138,9 @@ const setConfig = async cfg => {
     config.enableTestFeatures = parseBoolean(cfg.ENABLE_TEST_FEATURES)
 
     config.wso2BearerToken = cfg.WS02_BEARER_TOKEN;
+    
+    //Adds the host header to all mojaloop requests for nice routing
+    config.addHostHeader = true;
 };
 
 
