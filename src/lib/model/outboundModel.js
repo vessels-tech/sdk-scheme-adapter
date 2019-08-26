@@ -571,9 +571,9 @@ class OutboundTransfersModel {
                 }
             }
 
-            //if(this.data.currentState !== 'requestQuote') {
+            // if(this.data.currentState !== 'requestQuote') {
             //    throw new Error(`Unable to continue with transfer ${this.data.transferId} model. Expected to be in requestQuote state but in ${this.data.currentState}`);
-            //}
+            // }
 
             await this.stateMachine.executeTransfer();
             this.logger.log('Transfer fulfilled');
