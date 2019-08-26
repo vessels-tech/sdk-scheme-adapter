@@ -101,7 +101,7 @@ class InboundTransfersModel {
 
             // make a callback to the source fsp with the party info
             console.log("calling with putParties. mlParty is", mlParty)
-            return this.mojaloopRequests.putParties(idType, idValue, mlParty, sourceFspId);
+            return this.mojaloopRequests.putParties(idType, idValue, JSON.stringify(mlParty), sourceFspId);
         }
         catch(err) {
             this.logger.push({ err }).log('Error in getParties');
