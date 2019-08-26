@@ -291,11 +291,14 @@ const putPartiesByTypeAndIdError = async(ctx) => {
             data: ctx.request.body
         };
         const res = await ctx.state.cache.set(`callback_${ctx.state.path.params.ID}`, req);
-        ctx.state.logger.log(`Cacheing request: ${util.inspect(res)}`);
+        ctx.state.logger.log(`Caching request: ${util.inspect(res)}`);
     }
 
     const idType = ctx.state.path.params.Type;
     const idValue = ctx.state.path.params.ID;
+
+    //TODO: LOG THE ERROR
+    console.log("error: ", ctx.request.body)
 
     // publish an event onto the cache for subscribers to action
     // note that we publish the event the same way we publish a success PUT
@@ -322,6 +325,9 @@ const putQuotesByIdError = async(ctx) => {
         ctx.state.logger.log(`Cacheing callback: ${util.inspect(res)}`);
     }
 
+    //TODO: LOG THE ERROR
+    console.log("error: ", ctx.request.body)
+
     // publish an event onto the cache for subscribers to action
     await ctx.state.cache.publish(`${ctx.state.path.params.ID}`, {
         type: 'quoteResponseError',
@@ -346,6 +352,8 @@ const putTransfersByIdError = async (ctx) => {
         const res = await ctx.state.cache.set(`callback_${ctx.state.path.params.ID}`, req);
         ctx.state.logger.log(`Cacheing callback: ${util.inspect(res)}`);
     }
+
+    //TODO: LOG THE ERROR
 
     // publish an event onto the cache for subscribers to action
     await ctx.state.cache.publish(`${ctx.state.path.params.ID}`, {

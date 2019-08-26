@@ -13,6 +13,7 @@
 
 const Koa = require('koa');
 const koaBody = require('koa-body');
+const morgan = require('koa-morgan');
 const util = require('util');
 const coBody = require('co-body');
 const https = require('https');
@@ -46,7 +47,7 @@ const Errors = require('@modusbox/mojaloop-sdk-standard-components').Errors;
     await setConfig(process.env);
     const conf = getConfig();
 
-    console.log(`Config loaded: ${util.inspect(conf, { depth: 10 })}`);
+    // console.log(`Config loaded: ${util.inspect(conf, { depth: 10 })}`);
 
     // Set up a logger for each running server
     const space = Number(process.env.LOG_INDENT);
@@ -152,6 +153,9 @@ const Errors = require('@modusbox/mojaloop-sdk-standard-components').Errors;
         await next();
     });
 
+    //Add morgan logging
+    inboundApi.use(morgan('[INBOUND_API] handled :method :url :status - :response-time ms'))
+    outboundApi.use(morgan('[OUTBOUND_API] handled :method :url :status - :response-time ms'))
 
     // outbound always expects application/json
     outboundApi.use(koaBody());
@@ -195,13 +199,14 @@ const Errors = require('@modusbox/mojaloop-sdk-standard-components').Errors;
     const inboundValidator = new Validate();
 
     inboundApi.use(async (ctx, next) => {
-        ctx.state.logger.log('Validating request');
+        // ctx.state.logger.log('Validating request');
         try {
             ctx.state.path = inboundValidator.validateRequest(ctx, ctx.state.logger);
-            ctx.state.logger.log('Request passed validation');
+            // ctx.state.logger.log('Request passed validation');
             await next();
         } catch (err) {
-            ctx.state.logger.push({ err }).log('Request failed validation.');
+            // ctx.state.logger.push({ err }).log('Request failed validation.');
+            console.log('Failed validation with error', err)
             // send a mojaloop spec error response
             ctx.response.status = err.httpStatusCode || 400;
 

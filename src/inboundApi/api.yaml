@@ -3187,7 +3187,7 @@ components:
       title: ErrorDescription
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: Error description string.
     ExtensionKey:
       title: ExtensionKey
@@ -3199,14 +3199,14 @@ components:
       title: ExtensionValue
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: Extension value.
     FirstName:
       title: FirstName
       type: string
       minLength: 1
-      maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      maxLength: 256
+      pattern: '^(?!\s*$)[\w .,''-]{1,256}$'
       description: First name of the Party (Name Type).
     FspId:
       title: FspId
@@ -3245,8 +3245,8 @@ components:
       title: LastName
       type: string
       minLength: 1
-      maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      maxLength: 256
+      pattern: '^(?!\s*$)[\w .,''-]{1,256}$'
       description: Last name of the Party (Name Type).
     Latitude:
       title: Latitude
@@ -3276,18 +3276,18 @@ components:
       title: MiddleName
       type: string
       minLength: 1
-      maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      maxLength: 256
+      pattern: '^(?!\s*$)[\w .,''-]{1,256}$'
       description: Middle name of the Party (Name Type).
     Name:
       title: Name
       type: string
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\w .,''-]{1,256}$'
       description: >-
         The API data type Name is a JSON String, restricted by a regular
         expression to avoid characters which are generally not used in a name.
         Regular Expression - The regular expression for restricting the Name
-        type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a
+        type is "^(?!\s*$)[\w .,'-]{1,256}$". The restriction does not allow a
         string consisting of whitespace only, all Unicode characters are
         allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,)
         and space characters ( ). Note -  In some programming languages, Unicode
@@ -3298,7 +3298,7 @@ components:
       title: Note
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: Memo assigned to transaction
     OtpValue:
       title: OtpValue
@@ -3312,7 +3312,7 @@ components:
       title: PartyIdentifier
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: Identifier of the Party.
     PartyIdType:
       title: PartyIdTypeEnum
@@ -3362,13 +3362,13 @@ components:
       title: PartyName
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: Name of the Party. Could be a real name or a nickname.
     PartySubIdOrType:
       title: PartySubIdOrType
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: >-
         Either a sub-identifier of a PartyIdentifier, or a sub-type of the
         PartyIdType, normally a PersonalIdentifierType.
@@ -3416,7 +3416,7 @@ components:
       title: RefundReason
       type: string
       minLength: 1
-      maxLength: 128
+      maxLength: 256
       description: Reason for the refund.
     TokenCode:
       title: TokenCode

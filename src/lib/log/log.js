@@ -151,6 +151,8 @@ class Logger {
     //   Any type is acceptable. All arguments will be passed to util.format, then printed as the
     //   'msg' property of the logged item.
     async log(...args) {
+        //TODO: undo. I don't like this logger, it looks ugly from the command line
+        return
         // NOTE: if printing large strings, JSON.stringify will block the event loop. This, and
         // solutions, are discussed here:
         // https://nodejs.org/en/docs/guides/dont-block-the-event-loop/.
