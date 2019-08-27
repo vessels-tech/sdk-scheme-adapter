@@ -20,8 +20,7 @@ const {
     MojaloopRequests,
     Ilp,
     Errors,
-} = require('@modusbox/mojaloop-sdk-standard-components')
-
+} = require('@mojaloop/sdk-standard-components')
 
 const ASYNC_TIMEOUT_MILLS = 30000;
 

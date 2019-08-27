@@ -19,7 +19,7 @@
     }
   ],
   "dependencies": {
-    "mojaloop-sdk-standard-components": "https://github.com/vessels-tech/sdk-standard-components.git",
+    "@mojaloop/sdk-standard-components": "https://github.com/vessels-tech/sdk-standard-components.git",
     "co-body": "^6.0.0",
     "dotenv": "^6.2.0",
     "koa": "^2.6.2",
@@ -28,7 +28,15 @@
     "node-fetch": "^2.3.0",
     "nodemon": "^1.19.1",
     "uuid": "^3.3.2",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "ajv": "^6.7.0",
+    "json-schema-ref-parser": "^6.0.3",
+    "openapi-jsonschema-parameters": "^1.1.0",
+    "redis": "^2.8.0",
+    "sqlite": "^3.0.1",
+    "request": "^2.34",
+    "request-promise-native": "^1.0.7",
+    "javascript-state-machine": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^5.3.0",
