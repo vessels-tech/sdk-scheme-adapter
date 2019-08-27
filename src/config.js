@@ -18,6 +18,7 @@ const path = require('path');
 // A promise wrapper around fs.readFile
 // Redundant on node 10 and above, use require('fs').promises instead
 async function readFile(...args) {
+    console.log("reading file", ...args)
     const p = new Promise((resolve, reject) => {
         fs.readFile(...args, (err, data) => {
             if (err) {
@@ -121,16 +122,16 @@ const setConfig = async cfg => {
 
     config.validateInboundJws = parseBoolean(cfg.VALIDATE_INBOUND_JWS)
     config.jwsSign = parseBoolean(cfg.JWS_SIGN)
-    config.jwsSigningKey = await readFile(cfg.JWS_SIGNING_KEY_PATH);
+    // config.jwsSigningKey = await readFile(cfg.JWS_SIGNING_KEY_PATH);
     config.jwsVerificationKeysDirectory = cfg.JWS_VERIFICATION_KEYS_DIRECTORY;
 
     config.jwsVerificationKeys = {};
 
-    fs.readdirSync(cfg.JWS_VERIFICATION_KEYS_DIRECTORY)
-        .filter(f => f.endsWith('.pem'))
-        .map(f => {
-            config.jwsVerificationKeys[path.basename(f, '.pem')] = fs.readFileSync(path.join(cfg.JWS_VERIFICATION_KEYS_DIRECTORY, f));
-        });
+    // fs.readdirSync(cfg.JWS_VERIFICATION_KEYS_DIRECTORY)
+    //     .filter(f => f.endsWith('.pem'))
+    //     .map(f => {
+    //         config.jwsVerificationKeys[path.basename(f, '.pem')] = fs.readFileSync(path.join(cfg.JWS_VERIFICATION_KEYS_DIRECTORY, f));
+    //     });
 
     config.cacheConfig.host = cfg.CACHE_HOST;
     config.cacheConfig.port = cfg.CACHE_PORT;

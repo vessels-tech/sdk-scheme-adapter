@@ -11,7 +11,7 @@
 'use strict';
 
 
-const Model = require('@internal/model').outboundTransfersModel;
+const Model = require('../lib/model').outboundTransfersModel;
 
 
 /**

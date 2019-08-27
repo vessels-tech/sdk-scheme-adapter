@@ -2,12 +2,13 @@
   "name": "mojaloop-dfsp-sdk-scheme-adapter",
   "version": "0.0.1",
   "description": "An adapter for connecting to Mojaloop API enabled switches",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "dev": "source ./local.env && nodemon index.js",
-    "docker-dev": "nodemon index.js"
+    "start": "node ./src/index.js",
+    "dev": "source ./local.env && nodemon ./src/index.js",
+    "docker-dev": "nodemon ./src/index.js"
   },
   "author": "Matt Kingston, James Bush, ModusBox Inc.",
   "license": "Apache-2.0",
@@ -18,13 +19,7 @@
     }
   ],
   "dependencies": {
-    "@internal/cache": "file:lib/cache",
-    "@internal/log": "file:lib/log",
-    "@internal/model": "file:lib/model",
-    "@internal/randomphrase": "file:lib/randomphrase",
-    "@internal/router": "file:lib/router",
-    "@internal/validate": "file:lib/validate",
-    "@modusbox/mojaloop-sdk-standard-components": "file:tmp/mojaloop-sdk-standard-components/src",
+    "@mojaloop/sdk-standard-components": "https://github.com/vessels-tech/sdk-standard-components.git",
     "co-body": "^6.0.0",
     "dotenv": "^6.2.0",
     "koa": "^2.6.2",
@@ -33,7 +28,15 @@
     "node-fetch": "^2.3.0",
     "nodemon": "^1.19.1",
     "uuid": "^3.3.2",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "ajv": "^6.7.0",
+    "json-schema-ref-parser": "^6.0.3",
+    "openapi-jsonschema-parameters": "^1.1.0",
+    "redis": "^2.8.0",
+    "sqlite": "^3.0.1",
+    "request": "^2.34",
+    "request-promise-native": "^1.0.7",
+    "javascript-state-machine": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^5.3.0",

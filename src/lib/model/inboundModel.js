@@ -11,12 +11,16 @@
 'use strict';
 
 
-const BackendRequests = require('@internal/requests').BackendRequests;
-const HTTPResponseError = require('@internal/requests').HTTPResponseError;
-const MojaloopRequests = require('@modusbox/mojaloop-sdk-standard-components').MojaloopRequests;
-const Ilp = require('@modusbox/mojaloop-sdk-standard-components').Ilp;
-const Errors = require('@modusbox/mojaloop-sdk-standard-components').Errors;
-const shared = require('@internal/shared');
+const {
+    BackendRequests,
+    HTTPResponseError
+} = require('./lib/requests');
+const shared = require('../model/lib/shared');
+const {
+    MojaloopRequests,
+    Ilp,
+    Errors,
+} = require('@mojaloop/sdk-standard-components')
 
 const ASYNC_TIMEOUT_MILLS = 30000;
 
