@@ -11,7 +11,7 @@
 'use strict';
 
 const util = require('util');
-const Model = require('@internal/model').inboundTransfersModel;
+const Model = require('../lib/model').inboundTransfersModel;
 const { Errors } = require('@modusbox/mojaloop-sdk-standard-components');
 
 /**

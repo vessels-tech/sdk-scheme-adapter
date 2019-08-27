@@ -20,17 +20,17 @@ const https = require('https');
 const http = require('http');
 const yaml = require('yamljs');
 
-const randomPhrase = require('@internal/randomphrase');
-const Validate = require('@internal/validate');
+const randomPhrase = require('./lib/randomphrase');
+const Validate = require('./lib/validate');
 
 const inboundHandlers = require('./inboundApi/handlers.js');
 const outboundHandlers = require('./outboundApi/handlers.js');
 
-const router = require('@internal/router');
+const router = require('./lib/router');
 const { setConfig, getConfig } = require('./config.js');
-const { Logger, Transports } = require('@internal/log');
+const { Logger, Transports } = require('./lib/log');
 
-const Cache = require('@internal/cache');
+const Cache = require('./lib/cache');
 
 const inboundApi = new Koa();
 const outboundApi = new Koa();

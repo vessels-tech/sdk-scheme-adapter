@@ -1,12 +1,30 @@
-FROM node:8.11.3-alpine
+FROM node:10.15.3-alpine
+WORKDIR /opt/sdk-scheme-adapter
 
-EXPOSE 3000
+RUN apk add --no-cache -t build-dependencies git make gcc g++ python libtool autoconf automake \
+  && cd $(npm root -g)/npm \
+  && npm config set unsafe-perm true \
+  && npm install -g node-gyp
 
-COPY ./secrets /
+COPY package.json package-lock.json* /opt/sdk-scheme-adapter/
+RUN npm install
 
-WORKDIR /src/
+COPY src /opt/sdk-scheme-adapter/src
+COPY secrets /opt/sdk-scheme-adapter/secrets
 
-CMD ["node", "/src/index.js"]
+EXPOSE 4000
+CMD ["npm", "run", "start"]
+ENTRYPOINT [ "sh", "-c" ]
 
-COPY ./src/ /src/
-RUN npm install --production
+# FROM node:8.11.3-alpine
+
+# EXPOSE 3000
+
+# COPY ./secrets /
+
+# WORKDIR /src/
+
+# CMD ["node", "/src/index.js"]
+
+# COPY ./src/ /src/
+# RUN npm install --production
