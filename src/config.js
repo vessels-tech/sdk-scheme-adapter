@@ -18,7 +18,6 @@ const path = require('path');
 // A promise wrapper around fs.readFile
 // Redundant on node 10 and above, use require('fs').promises instead
 async function readFile(...args) {
-    console.log("reading file", ...args)
     const p = new Promise((resolve, reject) => {
         fs.readFile(...args, (err, data) => {
             if (err) {

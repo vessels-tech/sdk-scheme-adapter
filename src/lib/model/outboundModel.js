@@ -160,8 +160,10 @@ class OutboundTransfersModel {
             // listen for resolution events on the payee idType and idValue
             const payeeKey = `${this.data.to.idType}_${this.data.to.idValue}`;
 
+            console.log("subscribing to payeeKey", payeeKey)
             this.subscriber.subscribe(payeeKey);
             this.subscriber.on('message', (cn, msg) => {
+                console.log('on message!')
                 try {
                     let payee = JSON.parse(msg);
 
@@ -185,7 +187,8 @@ class OutboundTransfersModel {
 
                     // stop listening for payee resolution messages
                     this.subscriber.unsubscribe(payeeKey, () => {
-                        this.logger.log('Payee resolution subscriber unsubscribed');
+                        // this.logger.log('Payee resolution subscriber unsubscribed');
+                        console.log('Payee resolution subscriber unsubscribed')
                     });
 
                     // check we got the right payee and info we need
@@ -231,8 +234,10 @@ class OutboundTransfersModel {
             // now we have a timeout handler and a cache subscriber hooked up we can fire off
             // a GET /parties request to the switch
             try {
+                console.log("1. calling getParties")
                 const res = await this.requests.getParties(this.data.to.idType, this.data.to.idValue);
-                this.logger.push({ peer: res }).log('Party lookup sent to peer');
+                console.log('Party lookup sent to peer')
+                // this.logger.push({ peer: res }).log('Party lookup sent to peer');
             }
             catch(err) {
                 this.stateMachine.error(err);
