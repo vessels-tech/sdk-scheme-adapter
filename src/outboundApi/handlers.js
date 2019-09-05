@@ -18,6 +18,7 @@ const Model = require('../lib/model').outboundTransfersModel;
  * Handler for outbound transfer request initiation
  */
 const postTransfers = async (ctx) => {
+    console.log("postTransfers!")
     try {
         // this requires a multi-stage sequence with the switch.
         let transferRequest = {
@@ -40,6 +41,7 @@ const postTransfers = async (ctx) => {
         ctx.response.body = response;
     }
     catch(err) {
+        console.log("post transfers error is", err)
         ctx.response.status = 500;
         ctx.response.body = {
             message: err.message || 'Unspecified error'
